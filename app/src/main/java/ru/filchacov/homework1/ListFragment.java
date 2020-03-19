@@ -20,7 +20,7 @@ import java.util.Objects;
 
 public class ListFragment extends Fragment implements OnClickNumber{
     static String TAG = "ListFragment";
-    private static final String bundleNumberArr = "numberArr";
+    public static final String NUMBERARR = "numberArr";
     private ArrayList<Integer> number;
 
     public ListFragment() {
@@ -30,7 +30,7 @@ public class ListFragment extends Fragment implements OnClickNumber{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(savedInstanceState != null) {
-            number = savedInstanceState.getIntegerArrayList(bundleNumberArr);
+            number = savedInstanceState.getIntegerArrayList(NUMBERARR);
         }else{
             number = new ArrayList<>();
             for (int i = 1; i <= 100; i++) {
@@ -73,7 +73,7 @@ public class ListFragment extends Fragment implements OnClickNumber{
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putIntegerArrayList(bundleNumberArr, number);
+        outState.putIntegerArrayList(NUMBERARR, number);
     }
 
 
