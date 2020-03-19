@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -76,13 +77,12 @@ public class ListFragment extends Fragment implements OnClickNumber{
         outState.putIntegerArrayList("number", number);
     }
 
+
+
     @Override
-    public void clickNumber(int number, int color) {
-        if (getActivity() == null || getActivity() instanceof OnClickNumber){
-            return;
+    public void clickNumber(int number, @ColorInt int color) {
+        if (getActivity() != null && (getActivity() instanceof OnClickNumber)){
+            ((OnClickNumber)getActivity()).clickNumber(number, color);
         }
-
-        ((MainActivity)getActivity()).clickNumber(number, color);
-
     }
 }

@@ -22,15 +22,20 @@ public class MainActivity extends AppCompatActivity implements OnClickNumber {
         for (int i = 1; i <= 100; i++) {
             number.add(i);
         }
+        listFragment = (ListFragment) getSupportFragmentManager().findFragmentByTag(ListFragment.TAG);
+        if (listFragment == null) {
+            listFragment = new ListFragment(number);
+        }
+        oneNumberFragment = (NumberFragment) getSupportFragmentManager().findFragmentByTag(NumberFragment.TAG);
+        if (oneNumberFragment == null) {
+            oneNumberFragment = new NumberFragment();
+        }
 
-        listFragment = new ListFragment(number);
-        oneNumberFragment = new NumberFragment();
-
-        showListFragment(savedInstanceState);
+        showListFragment();
     }
 
-    void showListFragment(Bundle savedInstanceState){
-        if (savedInstanceState == null) {
+    public void showListFragment(){
+        if (getSupportFragmentManager().findFragmentByTag(ListFragment.TAG) == null) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.mainActivity, listFragment, ListFragment.TAG)
@@ -38,14 +43,15 @@ public class MainActivity extends AppCompatActivity implements OnClickNumber {
         }
     }
 
-    void showOneFragment(int number, int color){
-        oneNumberFragment.setNumber(number, color);
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.mainActivity, oneNumberFragment, NumberFragment.TAG)
-                .addToBackStack(null)
-                .commit();
+    public void showOneFragment(int number, @ColorInt int color){
+        if (getSupportFragmentManager().findFragmentByTag(NumberFragment.TAG) == null) {
+            oneNumberFragment.setNumber(number, color);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.mainActivity, oneNumberFragment, NumberFragment.TAG)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
 

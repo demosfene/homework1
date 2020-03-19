@@ -22,9 +22,9 @@ class MyHolder extends RecyclerView.ViewHolder {
         );
     }
 
-    void bind (int position){
-        textView.setText(String.valueOf(position));
-        textView.setTextColor(getColor(position));
+    void bind (int number){
+        textView.setText(String.valueOf(number));
+        textView.setTextColor(getColor(number));
     }
 
     private int getColor(int position){

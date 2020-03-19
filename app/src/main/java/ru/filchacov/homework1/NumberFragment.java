@@ -1,5 +1,6 @@
 package ru.filchacov.homework1;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,19 +16,18 @@ public class NumberFragment extends Fragment {
 
     static String TAG = "NumberFragment";
 
-
     @ColorInt
-    private int color;
-    private int number;
+    private int color = -1;
+    private int number = Color.BLACK;
 
-    void setNumber(int number, int color){
+    void setNumber(int number, @ColorInt int color){
         Bundle bundle = new Bundle();
         bundle.putInt("color", color);
         bundle.putInt("number", number);
         setArguments(bundle);
     }
 
-    NumberFragment() {
+    public NumberFragment() {
     }
 
     @Override
@@ -44,6 +44,7 @@ public class NumberFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.number, container, false);
+
 
     }
 
