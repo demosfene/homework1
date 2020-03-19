@@ -1,6 +1,5 @@
 package ru.filchacov.homework1;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +16,8 @@ public class NumberFragment extends Fragment {
     static String TAG = "NumberFragment";
 
     @ColorInt
-    private int color = -1;
-    private int number = Color.BLACK;
+    private int color;
+    private int number;
 
     void setNumber(int number, @ColorInt int color){
         Bundle bundle = new Bundle();

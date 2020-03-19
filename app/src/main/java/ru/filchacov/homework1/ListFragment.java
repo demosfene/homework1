@@ -1,7 +1,6 @@
 package ru.filchacov.homework1;
 
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class ListFragment extends Fragment implements OnClickNumber{
@@ -26,15 +26,15 @@ public class ListFragment extends Fragment implements OnClickNumber{
     public ListFragment() {
     }
 
-    ListFragment(ArrayList<Integer> number) {
-        this.number = number;
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(savedInstanceState != null) {
             number = savedInstanceState.getIntegerArrayList(String.valueOf(R.string.number));
+        }else{
+            for (int i = 1; i <= 100; i++) {
+                number.add(i);
+            }
         }
 
     }
@@ -48,11 +48,9 @@ public class ListFragment extends Fragment implements OnClickNumber{
         RecyclerView.LayoutManager layoutManager;
 
 
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
-            layoutManager = new GridLayoutManager(getActivity(), 3);
-        }else{
-            layoutManager = new GridLayoutManager(getActivity(), 4);
-        }
+        layoutManager = new GridLayoutManager(getActivity(), Objects.requireNonNull(getContext()).getResources().getInteger(R.integer.col_count));
+
+
 
         recyclerView.setLayoutManager(layoutManager);
 

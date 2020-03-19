@@ -6,29 +6,23 @@ import android.os.Bundle;
 import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity implements OnClickNumber {
 
 
-    private NumberFragment oneNumberFragment;
+    private NumberFragment numberFragment;
     private ListFragment listFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<Integer> number = new ArrayList<>();
-        for (int i = 1; i <= 100; i++) {
-            number.add(i);
-        }
         listFragment = (ListFragment) getSupportFragmentManager().findFragmentByTag(ListFragment.TAG);
         if (listFragment == null) {
-            listFragment = new ListFragment(number);
+            listFragment = new ListFragment();
         }
-        oneNumberFragment = (NumberFragment) getSupportFragmentManager().findFragmentByTag(NumberFragment.TAG);
-        if (oneNumberFragment == null) {
-            oneNumberFragment = new NumberFragment();
+        numberFragment = (NumberFragment) getSupportFragmentManager().findFragmentByTag(NumberFragment.TAG);
+        if (numberFragment == null) {
+            numberFragment = new NumberFragment();
         }
 
         showListFragment();
@@ -45,10 +39,10 @@ public class MainActivity extends AppCompatActivity implements OnClickNumber {
 
     public void showOneFragment(int number, @ColorInt int color){
         if (getSupportFragmentManager().findFragmentByTag(NumberFragment.TAG) == null) {
-            oneNumberFragment.setNumber(number, color);
+            numberFragment.setNumber(number, color);
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.mainActivity, oneNumberFragment, NumberFragment.TAG)
+                    .replace(R.id.mainActivity, numberFragment, NumberFragment.TAG)
                     .addToBackStack(null)
                     .commit();
         }
