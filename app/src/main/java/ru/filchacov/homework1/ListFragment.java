@@ -20,8 +20,8 @@ import java.util.Objects;
 
 public class ListFragment extends Fragment implements OnClickNumber{
     static String TAG = "ListFragment";
-
-    private ArrayList<Integer> number = new ArrayList<>();
+    private static final String bundleNumberArr = "numberArr";
+    private ArrayList<Integer> number;
 
     public ListFragment() {
     }
@@ -30,8 +30,9 @@ public class ListFragment extends Fragment implements OnClickNumber{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(savedInstanceState != null) {
-            number = savedInstanceState.getIntegerArrayList(String.valueOf(R.string.number));
+            number = savedInstanceState.getIntegerArrayList(bundleNumberArr);
         }else{
+            number = new ArrayList<>();
             for (int i = 1; i <= 100; i++) {
                 number.add(i);
             }
@@ -72,14 +73,14 @@ public class ListFragment extends Fragment implements OnClickNumber{
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putIntegerArrayList(String.valueOf(R.string.number), number);
+        outState.putIntegerArrayList(bundleNumberArr, number);
     }
 
 
 
     @Override
     public void clickNumber(int number, @ColorInt int color) {
-        if (getActivity() != null && (getActivity() instanceof OnClickNumber)){
+        if (getActivity() instanceof OnClickNumber){
             ((OnClickNumber)getActivity()).clickNumber(number, color);
         }
     }
