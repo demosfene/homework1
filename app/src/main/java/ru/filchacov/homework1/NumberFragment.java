@@ -22,8 +22,8 @@ public class NumberFragment extends Fragment {
 
     void setNumber(int number, @ColorInt int color){
         Bundle bundle = new Bundle();
-        bundle.putInt("color", color);
-        bundle.putInt("number", number);
+        bundle.putInt(String.valueOf(R.string.color), color);
+        bundle.putInt(String.valueOf(R.string.number), number);
         setArguments(bundle);
     }
 
@@ -35,8 +35,8 @@ public class NumberFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         if (bundle != null ){
-            this.number = bundle.getInt("number");
-            this.color = bundle.getInt("color");
+            this.number = bundle.getInt(String.valueOf(R.string.number));
+            this.color = bundle.getInt(String.valueOf(R.string.color));
         }
     }
 

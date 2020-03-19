@@ -34,7 +34,7 @@ public class ListFragment extends Fragment implements OnClickNumber{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(savedInstanceState != null) {
-            number = savedInstanceState.getIntegerArrayList("number");
+            number = savedInstanceState.getIntegerArrayList(String.valueOf(R.string.number));
         }
 
     }
@@ -74,7 +74,7 @@ public class ListFragment extends Fragment implements OnClickNumber{
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putIntegerArrayList("number", number);
+        outState.putIntegerArrayList(String.valueOf(R.string.number), number);
     }
 
 
